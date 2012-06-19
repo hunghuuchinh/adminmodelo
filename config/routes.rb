@@ -1,14 +1,21 @@
 Adminmodelo::Application.routes.draw do
   
 
+  resources :clientes, :except =>[:new,:create,:edit,:update,:destroy]
+  resources :produtos, :except =>[:new,:create,:edit,:update,:destroy]
+  resources :contatos, :except =>[:new,:create,:edit,:update,:destroy]
+  
+  root :to => "produtos#index"
+
+  devise_for :users
+
   namespace :admin do 
     resources :produtos
     resources :contatos
-    
+    resources :clientes
     root :to => "produtos#index"
   end
-  resources :produtos
-  resources :contatos
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
